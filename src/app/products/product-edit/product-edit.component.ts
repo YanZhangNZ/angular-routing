@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from '../../messages/message.service';
 
 import { Product } from '../product';
@@ -16,7 +16,14 @@ export class ProductEditComponent {
   product: Product;
 
   constructor(private productService: ProductService,
-              private messageService: MessageService) { }
+              private messageService: MessageService,
+              private route: ActivatedRoute,
+              private router: Router) { }
+            
+  ngOnInit():void{
+    const id = + this.route.snapshot.paramMap.get('id');
+    this.getProduct(id);
+  }
 
   getProduct(id: number): void {
     this.productService.getProduct(id)
@@ -75,11 +82,16 @@ export class ProductEditComponent {
     }
   }
 
+  cancelEdit(){
+    this.router.navigate(['/products']);
+  }
+
   onSaveComplete(message?: string): void {
     if (message) {
+      alert('yeh,save update successfully!');
       this.messageService.addMessage(message);
     }
-
     // Navigate back to the product list
+    this.router.navigate(['/products']);
   }
 }

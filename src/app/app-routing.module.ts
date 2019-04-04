@@ -7,12 +7,14 @@ import {Routes} from '@angular/router';
 
 //from course
 import {RouterModule} from '@angular/router';
-
+import { ProductListComponent } from './products/product-list.component';
+import { ProductDetailComponent } from './products/product-detail.component';
+import { ProductEditComponent } from './products/product-edit/product-edit.component';
 
 const routes:Routes =[
   {path:'welcome',component:WelcomeComponent},
   {path:'',redirectTo:'welcome',pathMatch:'full'},
-  {path:'**',component:PageNotFoundComponent}
+  {path:'**',component:PageNotFoundComponent},
 ];
 
 @NgModule({    
